@@ -15,7 +15,7 @@ information = APIRouter()
 @information.get("/info/")
 def cantidades(link: str):
     abs_path=os.path.abspath(os.path.dirname(__file__))
-    filename_path=os.path.join(abs_path, "chromedriver.exe")
+    filename_path=os.path.join(abs_path, "chromedriver")
     ser = Service(filename_path)
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
