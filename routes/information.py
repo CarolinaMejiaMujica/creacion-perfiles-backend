@@ -12,8 +12,7 @@ import os
 
 information = APIRouter()
 
-@information.get("/info/")
-def cantidades(link: str):
+def linkdin(link:str):
     abs_path=os.path.abspath(os.path.dirname(__file__))
     filename_path=os.path.join(abs_path, "chromedriver.exe")
     ser = Service(filename_path)
@@ -40,6 +39,41 @@ def cantidades(link: str):
         if new_height==last_height:
             break
         last_height=new_height
+    #READ HTML
+    src=browser.page_source
+    soup=BeautifulSoup(src,'lxml')
+    info = {"name":''}
+    #NAME
+    name_div=soup.find('div',{'class':'pv-text-details__left-panel'})
+    name_loc=name_div.find_all('h1')
+    name=name_loc[0].get_text().strip()
+    info["name"]=name
+    #IMAGE
+    image=soup.find('img',{'title':name})
+    img=image['src']
+    info["image"]=img
+    #PROFESSION
+    profession=name_div.find_all("div")
+    profession=profession[1].get_text().strip()
+    info["profession"]=profession
+    #LOCATION
+    location_div=soup.find('div',{'class':'pb2 pv-text-details__left-panel'})
+    location=location_div.find('span').get_text().strip()
+    info["location"]=location
+    #LINK
+    link=location_div.find('a')
+    #INFO CONTACTO
+    info_contact='https://www.linkedin.com' + str(link['href'])
+    info["link"]=info_contact
+    ###SECCIONES###
+    secciones=soup.find_all('section',{'class':"artdeco-card ember-view break-words pb3 mt4"})
+
+
+    return {"name":"Johana"}
+
+@information.get("/info/")
+def cantidades(link: str):
+    info=linkdin(link)
     return JSONResponse(content={"cantidadTotal":5,"cantidadAnalisis":3})
 
  
