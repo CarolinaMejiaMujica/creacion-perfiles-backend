@@ -73,7 +73,7 @@ def linkdin(link:str):
 
 @information.get("/info/")
 def cantidades(link: str):
-    info=linkdin(link)
+    #info=linkdin(link)
     return JSONResponse(content={"cantidadTotal":5,"cantidadAnalisis":3})
 
  
