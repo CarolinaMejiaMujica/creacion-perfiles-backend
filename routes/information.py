@@ -16,10 +16,12 @@ information = APIRouter()
 def cantidades(link: str):
     abs_path=os.path.abspath(os.path.dirname(__file__))
     filename_path=os.path.join(abs_path, "chromedriver")
-    ser = Service(filename_path)
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    browser = webdriver.Chrome(options=options,service=ser)
+    print(filename_path)
+    #ser = Service(filename_path)
+    #options = webdriver.ChromeOptions()
+    #options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    #browser = webdriver.Chrome(options=options,service=ser)
+    browser = webdriver.Chrome(executable_path='/path/to/chromedriver')
     browser.get('https://www.linkedin.com/uas/login')
     username='abc.inf.2022@gmail.com'
     password='hackathon/2022'
