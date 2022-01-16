@@ -1,0 +1,1 @@
+from routes.information import information
