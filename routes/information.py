@@ -12,7 +12,8 @@ import os
 
 information = APIRouter()
 
-def linkdin(link:str):
+@information.get("/info/")
+def cantidades(link: str):
     abs_path=os.path.abspath(os.path.dirname(__file__))
     filename_path=os.path.join(abs_path, "chromedriver.exe")
     ser = Service(filename_path)
@@ -29,7 +30,7 @@ def linkdin(link:str):
     elementID.submit()
     browser.get(link)
     ###Time scroll
-    SCROLL_PAUSE_TIME=5
+    '''SCROLL_PAUSE_TIME=5
     last_height=browser.execute_script("return document.body.scrollHeight")
 
     for i in range(3):
@@ -66,14 +67,8 @@ def linkdin(link:str):
     info_contact='https://www.linkedin.com' + str(link['href'])
     info["link"]=info_contact
     ###SECCIONES###
-    secciones=soup.find_all('section',{'class':"artdeco-card ember-view break-words pb3 mt4"})
+    secciones=soup.find_all('section',{'class':"artdeco-card ember-view break-words pb3 mt4"})'''
 
-
-    return {"name":"Johana"}
-
-@information.get("/info/")
-def cantidades(link: str):
-    info=linkdin(link)
     return JSONResponse(content={"cantidadTotal":5,"cantidadAnalisis":3})
 
  
