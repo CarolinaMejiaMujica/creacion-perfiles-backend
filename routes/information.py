@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome import service
 from selenium.webdriver.chrome.service import Service
-import os
+import os, sys, stat
 
 information = APIRouter()
 
@@ -16,7 +16,7 @@ information = APIRouter()
 def cantidades(link: str):
     abs_path=os.path.abspath(os.path.dirname(__file__))
     filename_path=os.path.join(abs_path, "chromedriver")
-    os.chmod(filename_path,'0755') 
+    os.chmod(filename_path,stat.S_IRWXO) 
     print(filename_path)
     #ser = Service(filename_path)
     #options = webdriver.ChromeOptions()
