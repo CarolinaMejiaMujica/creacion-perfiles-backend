@@ -16,12 +16,14 @@ information = APIRouter()
 def cantidades(link: str):
     abs_path=os.path.abspath(os.path.dirname(__file__))
     filename_path=os.path.join(abs_path, "chromedriver")
+    os.chmod(filename_path,'0755') 
     print(filename_path)
     #ser = Service(filename_path)
     #options = webdriver.ChromeOptions()
     #options.add_experimental_option('excludeSwitches', ['enable-logging'])
     #browser = webdriver.Chrome(options=options,service=ser)
     os.environ["PATH"] += os.pathsep + filename_path
+    print(os.environ["PATH"])
     browser = webdriver.Chrome(executable_path='/app/routes/chromedriver')
     browser.get('https://www.linkedin.com/uas/login')
     username='abc.inf.2022@gmail.com'
