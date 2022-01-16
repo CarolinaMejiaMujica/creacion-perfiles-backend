@@ -16,7 +16,7 @@ information = APIRouter()
 def cantidades(link: str):
     abs_path=os.path.abspath(os.path.dirname(__file__))
     filename_path=os.path.join(abs_path, "chromedriver")
-    os.chmod(filename_path,stat.S_IRWXO) 
+    os.chmod(filename_path,stat.S_IRWXU) 
     print(filename_path)
     #ser = Service(filename_path)
     #options = webdriver.ChromeOptions()
