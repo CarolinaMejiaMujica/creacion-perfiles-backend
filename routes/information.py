@@ -19,10 +19,17 @@ def cantidades(link: str):
     os.chmod(filename_path,stat.S_IRWXU)
     os.environ["PATH"] += os.pathsep + filename_path
     print(os.environ["PATH"])
-    ser = Service(filename_path)
+    '''ser = Service(filename_path)
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome(options=options,service=ser)'''
+
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    # open it, go to a website, and get results
+    browser = webdriver.Chrome('chromedriver',options=options)
     #browser = webdriver.Chrome(executable_path=filename_path)
     browser.get('https://www.linkedin.com/uas/login')
     username='abc.inf.2022@gmail.com'
