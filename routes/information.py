@@ -21,7 +21,8 @@ def cantidades(link: str):
     #options = webdriver.ChromeOptions()
     #options.add_experimental_option('excludeSwitches', ['enable-logging'])
     #browser = webdriver.Chrome(options=options,service=ser)
-    browser = webdriver.Chrome(executable_path='/path/to/chromedriver')
+    os.environ["PATH"] += os.pathsep + filename_path
+    browser = webdriver.Chrome(executable_path='/app/routes/chromedriver')
     browser.get('https://www.linkedin.com/uas/login')
     username='abc.inf.2022@gmail.com'
     password='hackathon/2022'
